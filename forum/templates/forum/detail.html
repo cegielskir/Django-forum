@@ -1,0 +1,70 @@
+<!-- Loads the path to static files -->
+{% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'forum/style.css' %}" />
+
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <div class = "navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class = "icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/forum/">Forum</a>
+        </div>
+
+        <!-- Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="{{ request.get_full_path }}add-answer">
+                        <span class="" aria-hidden="true"></span>&nbsp; Add Answer
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a href="{% url 'forum:logout' %}">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+<!-- Logic -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>
+        Topic: {{ topic.title }}    <br>     Author: {{ topic.author }} <br>
+        <div style="width: 80%; text-indent: 5em; text-align: justify; margin-left: 70px;">
+            <h5>
+                {{ topic.text }} <br><br>
+            </h5>
+        </div>
+        <ul>
+            {% for answer in topic.answers.all %}
+                <h5>
+                    {{ answer.author }}           {{ answer.created_date }} <br>
+                    <div style="width: 80%; text-indent: 5em; text-align: justify; margin-left: 70px;">
+                    {{ answer.text }} <br><br>
+                    </div>
+                </h5>
+            {% endfor %}
+        </ul>
+    </h3>
+</body>
+</html>
