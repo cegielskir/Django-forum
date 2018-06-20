@@ -10,11 +10,6 @@ from .forms import UserRegistrationForm, UserLoginForm, AnswerAddForm, TopicAddF
 from datetime import datetime
 
 
-class ErrorView(generic.View):
-    template_name = 'forum/error.html'
-    context_object_name = 'error'
-
-
 class IndexView(generic.ListView):
     template_name = 'forum/index.html'
     context_object_name = 'all_topics'

@@ -16,9 +16,6 @@ urlpatterns = [
 
     url(r'^logout/$', logout, {'next_page': '/forum/'}, name='logout'),
 
-    #errors
-    url(r'^error/(?P<error>([a-zA-Z0-9 ]+))$', views.ErrorView.as_view(), name='error'),
-
     #/forum/title/
     url(r'^(?P<slug>([a-zA-Z0-9 ]+))/$', views.DetailView.as_view(), name='detail'),
 
